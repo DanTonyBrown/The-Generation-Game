@@ -25,13 +25,13 @@ namespace TheGenerationGame
 
             numberkilled = numberSheepToKill;
 
-            return KillNumberOfSheep(numberSheepToKill, SheepFlock);
+            return KillNumberOfSheep(numberSheepToKill, SheepFlock, 10);
         }
 
-        private static Flock KillNumberOfSheep(int numberSheepToKill, Flock SheepFlock)
+        private static Flock KillNumberOfSheep(int numberSheepToKill, Flock SheepFlock, int huntingSkillBase)
         {
             int successfulKills = 0;
-            int huntingSkillThisGeneration = r.Next(10, 100);
+            int huntingSkillThisGeneration = r.Next(huntingSkillBase, 100);
 
             float liklihoodRequiredForKill = 0;
             liklihoodRequiredForKill = r.Next(0, 100);
@@ -75,7 +75,7 @@ namespace TheGenerationGame
 
             if(successfulKills != numberSheepToKill)
             {
-                KillNumberOfSheep(numberSheepToKill - successfulKills, SheepFlock);
+                KillNumberOfSheep(numberSheepToKill - successfulKills, SheepFlock, huntingSkillThisGeneration);
             }
 
             return SheepFlock;

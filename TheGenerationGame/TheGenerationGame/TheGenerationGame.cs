@@ -148,7 +148,7 @@ namespace TheGenerationGame
             }
 
             MouseState currentMouseState = Mouse.GetState();
-            if (lastMouseState != null)
+            if (lastMouseState != null && this.IsActive)
             {
                 if (lastMouseState.LeftButton == ButtonState.Released && currentMouseState.LeftButton == ButtonState.Pressed)
                 {
@@ -187,13 +187,16 @@ namespace TheGenerationGame
             this.spriteBatch.Draw(blankTexture, new Rectangle(0, 0, (int)windowWidthSize, (int)windowHeightSize), new Color(0, 0.9f, 0));
             this.spriteBatch.DrawString(generationFont, "Turn: " + generationNumber, new Vector2(10, 10), new Color(1, 1, 1));
 
-            if (LastThingDone == Action.Kill)
+            if (generationNumber != 0)
             {
-                this.spriteBatch.DrawString(generationFont, "Number Killed This Generation: " + numberKilled, new Vector2(190, 10), new Color(1, 1, 1));
-            }
-            else
-            {
-                this.spriteBatch.DrawString(generationFont, "Number New Borns This Generation: " + numberBorn, new Vector2(190, 10), new Color(1, 1, 1));
+                if (LastThingDone == Action.Kill)
+                {
+                    this.spriteBatch.DrawString(generationFont, "Number Killed This Turn: " + numberKilled, new Vector2(190, 10), new Color(1, 1, 1));
+                }
+                else
+                {
+                    this.spriteBatch.DrawString(generationFont, "Number New Borns This Turn: " + numberBorn, new Vector2(190, 10), new Color(1, 1, 1));
+                }
             }
 
             this.spriteBatch.DrawString(generationFont, "Number Sheep: " + sheepFlock.Count, new Vector2(600, 10), new Color(1, 1, 1));
