@@ -55,6 +55,8 @@ namespace TheGenerationGame
         /// </summary>
         protected override void Initialize()
         {
+            this.Window.Title = "The Generation Game - A Simple Genetic Algorithm";
+
             sheepFlock = new Flock { };
 
             //Create Random number generator used to make random animal colours
